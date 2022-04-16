@@ -388,8 +388,13 @@ def order(startRealTime, endRealTime):
         if status:
             print('【成功】哥，咱家有菜了~')
             import os
+            import sys
             file = r"nb.mp3"
-            os.system(file)
+            if sys.platform == 'darwin':
+                # macOS
+                os.system("open " + file)
+            else:
+                os.system(file)
             exit()
         else:
             if myRet.get('code') == 'STORE_HAS_CLOSED':
